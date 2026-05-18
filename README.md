@@ -4,7 +4,7 @@ Interactive OpenAPI / Swagger reference for the AstroYuga backend — every
 endpoint with its request body, query params, responses, and the role(s) it
 requires.
 
-**Live docs:** https://hotelmgmtcrm.github.io/astroyuga-docs/
+**Live docs:** https://astroyugawork.github.io/astroyuga-docs/
 
 ## How it stays up to date
 
@@ -44,6 +44,3 @@ This repo is **published automatically**. It is not edited by hand.
    repository. The `Publish OpenAPI docs` workflow uses it to push the
    regenerated spec here.
 2. GitHub Pages is already enabled (branch `main`, folder `/`).
-
-> If you later transfer this repo into the `astroyugawork` org, update the
-> clone URL in the backend's `.github/workflows/publish-openapi.yml`.
