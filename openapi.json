@@ -8852,11 +8852,11 @@
   "tags": [],
   "servers": [
     {
-      "url": "https://astroyuga.in/api/v1",
+      "url": "https://astroyuga.in",
       "description": "Production"
     },
     {
-      "url": "http://localhost:3000/api/v1",
+      "url": "http://localhost:3000",
       "description": "Local development"
     }
   ],
