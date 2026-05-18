@@ -11,7 +11,7 @@
   />
   <style>
     body { margin: 0; background: #fafafa; }
-    .topbar { display: none; }
+    .swagger-ui .topbar { display: none; }
     #brand {
       background: #d97706; color: #fff; padding: 14px 24px;
       font: 700 18px/1.2 system-ui, sans-serif;
@@ -24,7 +24,6 @@
   <div id="swagger-ui"></div>
 
   <script src="https://cdn.jsdelivr.net/npm/swagger-ui-dist@5/swagger-ui-bundle.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/swagger-ui-dist@5/swagger-ui-standalone-preset.js"></script>
   <script>
     window.onload = () => {
       window.ui = SwaggerUIBundle({
@@ -35,11 +34,7 @@
         tagsSorter: 'alpha',
         operationsSorter: 'alpha',
         docExpansion: 'none',
-        presets: [
-          SwaggerUIBundle.presets.apis,
-          SwaggerUIBundle.SwaggerUIStandalonePreset,
-        ],
-        layout: 'StandaloneLayout',
+        presets: [SwaggerUIBundle.presets.apis],
       });
     };
   </script>
