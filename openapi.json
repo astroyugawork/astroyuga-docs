@@ -8994,17 +8994,20 @@
         "properties": {
           "phoneNumber": {
             "type": "string",
-            "pattern": "/^[6-9]\\d{9}$/"
+            "description": "10-digit Indian mobile number (no +91 / no leading 0).",
+            "pattern": "^[6-9]\\d{9}$",
+            "example": "9876543210"
           },
           "type": {
-            "type": "string",
             "default": "LOGIN",
             "enum": [
               "LOGIN",
               "REGISTRATION",
               "FORGOT_PASSWORD",
               "VERIFICATION"
-            ]
+            ],
+            "type": "string",
+            "description": "Purpose of the OTP. Defaults to LOGIN."
           }
         },
         "required": [
@@ -9016,22 +9019,27 @@
         "properties": {
           "phoneNumber": {
             "type": "string",
-            "pattern": "/^[6-9]\\d{9}$/"
+            "pattern": "^[6-9]\\d{9}$",
+            "description": "10-digit Indian mobile number (no +91 / no leading 0). Must match the number used in send-otp.",
+            "example": "9876543210"
           },
           "otp": {
             "type": "string",
             "minLength": 6,
-            "maxLength": 6
+            "maxLength": 6,
+            "description": "The 6-digit OTP delivered to the phone by send-otp.",
+            "example": "123456"
           },
           "role": {
-            "type": "string",
             "enum": [
               "USER",
               "CUSTOMER",
               "ASTROLOGER",
               "ADMIN",
               "SUPER_ADMIN"
-            ]
+            ],
+            "type": "string",
+            "description": "Optional — pin the verification to a specific role so a USER and ASTROLOGER sharing the same phone resolve to distinct accounts."
           }
         },
         "required": [
