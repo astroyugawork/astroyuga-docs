@@ -8972,8 +8972,8 @@
   "tags": [],
   "servers": [
     {
-      "url": "https://astroyuga.in",
-      "description": "Production"
+      "url": "https://astroyuga.up.railway.app",
+      "description": "Production (Railway)"
     },
     {
       "url": "http://localhost:3000",
