@@ -1,0 +1,13 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "AstroYuga API",
+    "version": "1.0",
+    "description": "This spec is published automatically by the backend's CI on every push to main. It will populate fully after the first successful `Publish OpenAPI docs` workflow run."
+  },
+  "servers": [
+    { "url": "https://astroyuga.in/api/v1", "description": "Production" },
+    { "url": "http://localhost:3000/api/v1", "description": "Local development" }
+  ],
+  "paths": {}
+}
