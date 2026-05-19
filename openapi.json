@@ -2545,6 +2545,146 @@
         "description": "\n\n🔒 **Access:** Requires authentication — any signed-in user."
       }
     },
+    "/api/v1/orders/callback-request": {
+      "post": {
+        "operationId": "OrderController_createCallbackRequest",
+        "summary": "",
+        "description": "Queue a callback request for a busy/offline astrologer (Astrotalk-style).\nNo wallet hold here — the balance is checked when the astrologer starts\nthe call. Works for chat and call alike.\n\n🔒 **Access:** Requires authentication — any signed-in user.",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateOrderDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "orders"
+        ],
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      }
+    },
+    "/api/v1/orders/callback-requests": {
+      "get": {
+        "operationId": "OrderController_listCallbackRequests",
+        "summary": "",
+        "description": "Astrologer's callback queue — open requests from the last 24h.\n\n🔒 **Access:** Requires role — ASTROLOGER.",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "orders"
+        ],
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      }
+    },
+    "/api/v1/orders/my-callback-requests": {
+      "get": {
+        "operationId": "OrderController_myCallbackRequests",
+        "summary": "",
+        "description": "A user's own pending callback requests.\n\n🔒 **Access:** Requires authentication — any signed-in user.",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "orders"
+        ],
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      }
+    },
+    "/api/v1/orders/{id}/start-callback": {
+      "post": {
+        "operationId": "OrderController_startCallback",
+        "summary": "",
+        "description": "Astrologer picks up a queued callback request and connects the call.\n\n🔒 **Access:** Requires role — ASTROLOGER.",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "orders"
+        ],
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      }
+    },
+    "/api/v1/orders/{id}/cancel-callback": {
+      "post": {
+        "operationId": "OrderController_cancelCallback",
+        "summary": "",
+        "description": "Cancel an open callback request (by the user or the astrologer).\n\n🔒 **Access:** Requires authentication — any signed-in user.",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "orders"
+        ],
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      }
+    },
     "/api/v1/orders/{id}": {
       "get": {
         "operationId": "OrderController_findOne",
@@ -9467,12 +9607,12 @@
             "type": "string"
           },
           "serviceType": {
-            "type": "string",
             "enum": [
               "CHAT",
               "AUDIO_CALL",
               "VIDEO_CALL"
-            ]
+            ],
+            "type": "string"
           },
           "duration": {
             "type": "number",
