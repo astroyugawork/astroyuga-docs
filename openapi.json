@@ -13377,6 +13377,7 @@
               "planet_in_sign",
               "planet_in_house",
               "planet_in_nakshatra",
+              "planet_with_planet",
               "planet_retrograde",
               "planet_combust",
               "planet_exalted",
@@ -13390,6 +13391,9 @@
             ]
           },
           "planet": {
+            "type": "string"
+          },
+          "planet2": {
             "type": "string"
           },
           "sign": {
