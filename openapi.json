@@ -6165,6 +6165,43 @@
         "description": "\n\n🔒 **Access:** Requires authentication — any signed-in user."
       }
     },
+    "/api/v1/rashifal/claim-free-trial": {
+      "post": {
+        "operationId": "RashifalController_claimFreeTrial",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateSubscriptionDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RashifalSubscription"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "rashifal"
+        ],
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "description": "\n\n🔒 **Access:** Requires authentication — any signed-in user."
+      }
+    },
     "/api/v1/rashifal/my-subscription": {
       "get": {
         "operationId": "RashifalController_mySubscription",
@@ -10634,6 +10671,9 @@
           "isBestValue": {
             "type": "boolean"
           },
+          "isFreeTrial": {
+            "type": "boolean"
+          },
           "isActive": {
             "type": "boolean"
           },
@@ -10664,6 +10704,7 @@
           "featuresHindi",
           "isPopular",
           "isBestValue",
+          "isFreeTrial",
           "isActive",
           "sortOrder",
           "createdAt",
@@ -10782,12 +10823,12 @@
             "type": "string"
           },
           "gender": {
-            "type": "string",
             "enum": [
               "MALE",
               "FEMALE",
               "OTHER"
-            ]
+            ],
+            "type": "string"
           },
           "dateOfBirth": {
             "type": "string"
@@ -10802,7 +10843,6 @@
             "type": "string"
           },
           "zodiacSign": {
-            "type": "string",
             "enum": [
               "ARIES",
               "TAURUS",
@@ -10816,7 +10856,8 @@
               "CAPRICORN",
               "AQUARIUS",
               "PISCES"
-            ]
+            ],
+            "type": "string"
           }
         },
         "required": [
@@ -11061,6 +11102,9 @@
           "paymentStatus": {
             "type": "string"
           },
+          "isFreeTrial": {
+            "type": "boolean"
+          },
           "createdAt": {
             "format": "date-time",
             "type": "string"
@@ -11088,6 +11132,7 @@
           "paymentId",
           "razorpayOrderId",
           "paymentStatus",
+          "isFreeTrial",
           "createdAt",
           "updatedAt"
         ]
@@ -11146,6 +11191,9 @@
             "type": "boolean"
           },
           "isBestValue": {
+            "type": "boolean"
+          },
+          "isFreeTrial": {
             "type": "boolean"
           },
           "isActive": {
@@ -11213,6 +11261,9 @@
             "type": "boolean"
           },
           "isBestValue": {
+            "type": "boolean"
+          },
+          "isFreeTrial": {
             "type": "boolean"
           },
           "isActive": {
