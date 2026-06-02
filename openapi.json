@@ -6098,6 +6098,50 @@
         "description": "\n\n🔒 **Access:** Public — no authentication required."
       }
     },
+    "/api/v1/rashifal/horoscope/{sign}/{period}": {
+      "get": {
+        "operationId": "RashifalController_getHoroscope",
+        "parameters": [
+          {
+            "name": "sign",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "period",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Rashifal"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "rashifal"
+        ],
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "description": "\n\n🔒 **Access:** Public — no authentication required."
+      }
+    },
     "/api/v1/rashifal/subscribe": {
       "post": {
         "operationId": "RashifalController_subscribe",
@@ -6588,6 +6632,47 @@
             "application/json": {
               "schema": {
                 "$ref": "#/components/schemas/BulkCreateRashifalDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Rashifal"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "rashifal",
+          "admin"
+        ],
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "description": "\n\n🔒 **Access:** Requires role — ADMIN, SUPER_ADMIN."
+      }
+    },
+    "/api/v1/rashifal/admin/generate": {
+      "post": {
+        "operationId": "RashifalController_generate",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/GenerateRashifalDto"
               }
             }
           }
@@ -8801,6 +8886,376 @@
         "description": "\n\n🔒 **Access:** Requires authentication — any signed-in user."
       }
     },
+    "/api/v1/remedy-tracking/preview": {
+      "post": {
+        "operationId": "RemedyTrackingController_preview",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PreviewDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "remedy-tracking"
+        ],
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "description": "\n\n🔒 **Access:** Requires authentication — any signed-in user."
+      }
+    },
+    "/api/v1/remedy-tracking/suggestions": {
+      "get": {
+        "operationId": "RemedyTrackingController_suggestions",
+        "parameters": [
+          {
+            "name": "noteId",
+            "required": true,
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "remedy-tracking"
+        ],
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "description": "\n\n🔒 **Access:** Requires authentication — any signed-in user."
+      }
+    },
+    "/api/v1/remedy-tracking/assignments": {
+      "post": {
+        "operationId": "RemedyTrackingController_create",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateAssignmentDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RemedyAssignment"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "remedy-tracking"
+        ],
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "description": "\n\n🔒 **Access:** Requires authentication — any signed-in user."
+      },
+      "get": {
+        "operationId": "RemedyTrackingController_findAll",
+        "parameters": [
+          {
+            "name": "noteId",
+            "required": true,
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/RemedyAssignment"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "remedy-tracking"
+        ],
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "description": "\n\n🔒 **Access:** Requires authentication — any signed-in user."
+      }
+    },
+    "/api/v1/remedy-tracking/assignments/{id}": {
+      "get": {
+        "operationId": "RemedyTrackingController_findOne",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RemedyAssignment"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "remedy-tracking"
+        ],
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "description": "\n\n🔒 **Access:** Requires authentication — any signed-in user."
+      },
+      "patch": {
+        "operationId": "RemedyTrackingController_update",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateAssignmentDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RemedyAssignment"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "remedy-tracking"
+        ],
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "description": "\n\n🔒 **Access:** Requires authentication — any signed-in user."
+      },
+      "delete": {
+        "operationId": "RemedyTrackingController_remove",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "remedy-tracking"
+        ],
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "description": "\n\n🔒 **Access:** Requires authentication — any signed-in user."
+      }
+    },
+    "/api/v1/remedy-tracking/assignments/{id}/observations": {
+      "post": {
+        "operationId": "RemedyTrackingController_addObservation",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateObservationDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RemedyObservation"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "remedy-tracking"
+        ],
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "description": "\n\n🔒 **Access:** Requires authentication — any signed-in user."
+      },
+      "get": {
+        "operationId": "RemedyTrackingController_listObservations",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/RemedyObservation"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "remedy-tracking"
+        ],
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "description": "\n\n🔒 **Access:** Requires authentication — any signed-in user."
+      }
+    },
+    "/api/v1/remedy-tracking/assignments/{id}/observations/{obsId}": {
+      "delete": {
+        "operationId": "RemedyTrackingController_removeObservation",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "obsId",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "remedy-tracking"
+        ],
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "description": "\n\n🔒 **Access:** Requires authentication — any signed-in user."
+      }
+    },
     "/api/v1/consultation-reports": {
       "post": {
         "operationId": "ConsultationReportController_upsert",
@@ -10773,6 +11228,13 @@
           "luckyColorHindi": {
             "type": "string"
           },
+          "luckyTime": {
+            "type": "string"
+          },
+          "categories": {
+            "type": "object",
+            "description": "Optional AstroTalk-style per-area readings; null falls back to prediction."
+          },
           "remedy": {
             "type": "string"
           },
@@ -10781,6 +11243,14 @@
           },
           "isPublished": {
             "type": "boolean"
+          },
+          "isPremium": {
+            "type": "boolean",
+            "description": "Premium entries show only to subscribers; free (default) show to everyone."
+          },
+          "isAutoGenerated": {
+            "type": "boolean",
+            "description": "True when produced by the Vedic generator (admin edits flip this off)."
           },
           "createdBy": {
             "type": "string"
@@ -10808,9 +11278,13 @@
           "luckyNumber",
           "luckyColor",
           "luckyColorHindi",
+          "luckyTime",
+          "categories",
           "remedy",
           "remedyHindi",
           "isPublished",
+          "isPremium",
+          "isAutoGenerated",
           "createdBy",
           "createdAt",
           "updatedAt"
@@ -11341,6 +11815,12 @@
           "luckyColorHindi": {
             "type": "string"
           },
+          "luckyTime": {
+            "type": "string"
+          },
+          "categories": {
+            "type": "object"
+          },
           "remedy": {
             "type": "string"
           },
@@ -11348,6 +11828,9 @@
             "type": "string"
           },
           "isPublished": {
+            "type": "boolean"
+          },
+          "isPremium": {
             "type": "boolean"
           }
         },
@@ -11372,6 +11855,9 @@
               "YEARLY"
             ]
           },
+          "isPremium": {
+            "type": "boolean"
+          },
           "predictions": {
             "type": "array",
             "items": {
@@ -11385,6 +11871,29 @@
         "required": [
           "date",
           "predictions"
+        ]
+      },
+      "GenerateRashifalDto": {
+        "type": "object",
+        "properties": {
+          "date": {
+            "type": "string"
+          },
+          "type": {
+            "type": "string",
+            "enum": [
+              "DAILY",
+              "WEEKLY",
+              "MONTHLY",
+              "YEARLY"
+            ]
+          },
+          "isPremium": {
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "date"
         ]
       },
       "UpdateRashifalDto": {
@@ -11425,6 +11934,12 @@
           "luckyColorHindi": {
             "type": "string"
           },
+          "luckyTime": {
+            "type": "string"
+          },
+          "categories": {
+            "type": "object"
+          },
           "remedy": {
             "type": "string"
           },
@@ -11432,6 +11947,9 @@
             "type": "string"
           },
           "isPublished": {
+            "type": "boolean"
+          },
+          "isPremium": {
             "type": "boolean"
           }
         }
@@ -13620,6 +14138,424 @@
         "required": [
           "title",
           "predictionText"
+        ]
+      },
+      "PreviewDto": {
+        "type": "object",
+        "properties": {
+          "researchNoteId": {
+            "type": "string"
+          },
+          "targetPlanet": {
+            "type": "string"
+          },
+          "nature": {
+            "type": "string",
+            "enum": [
+              "STRENGTHEN",
+              "PACIFY"
+            ]
+          },
+          "problemLinkedDosha": {
+            "type": "string"
+          },
+          "recommendedAt": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "researchNoteId"
+        ]
+      },
+      "CreateAssignmentDto": {
+        "type": "object",
+        "properties": {
+          "researchNoteId": {
+            "type": "string"
+          },
+          "problemCategory": {
+            "type": "string",
+            "enum": [
+              "health",
+              "wealth",
+              "career",
+              "marriage",
+              "mental",
+              "legal",
+              "general"
+            ]
+          },
+          "problemTitle": {
+            "type": "string"
+          },
+          "problemTitleHi": {
+            "type": "string"
+          },
+          "problemLinkedDosha": {
+            "type": "string"
+          },
+          "problemLinkedHouse": {
+            "type": "number"
+          },
+          "problemLinkedPlanet": {
+            "type": "string"
+          },
+          "remedyType": {
+            "type": "string",
+            "enum": [
+              "MALA_JAPA",
+              "DAAN",
+              "GEMSTONE",
+              "YANTRA",
+              "PUJA",
+              "MANTRA",
+              "FASTING",
+              "OTHER"
+            ]
+          },
+          "remedyTitle": {
+            "type": "string"
+          },
+          "remedyTitleHi": {
+            "type": "string"
+          },
+          "remedyProductId": {
+            "type": "string"
+          },
+          "targetPlanet": {
+            "type": "string"
+          },
+          "nature": {
+            "type": "string",
+            "enum": [
+              "STRENGTHEN",
+              "PACIFY"
+            ]
+          },
+          "recommendedAt": {
+            "type": "string"
+          },
+          "durationDays": {
+            "type": "number",
+            "minimum": 1
+          },
+          "notes": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "researchNoteId",
+          "problemTitle",
+          "remedyTitle",
+          "recommendedAt"
+        ]
+      },
+      "RemedyAssignment": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "userId": {
+            "type": "string"
+          },
+          "user": {
+            "$ref": "#/components/schemas/User"
+          },
+          "researchNoteId": {
+            "type": "string",
+            "description": "The saved kundali (research note) this remedy is recommended for."
+          },
+          "researchNote": {
+            "$ref": "#/components/schemas/ResearchNote"
+          },
+          "problemCategory": {
+            "type": "string"
+          },
+          "problemTitle": {
+            "type": "string"
+          },
+          "problemTitleHi": {
+            "type": "string"
+          },
+          "problemLinkedDosha": {
+            "type": "string",
+            "description": "Optional link to a detected dosha by name (KundliDosha.name)."
+          },
+          "problemLinkedHouse": {
+            "type": "number"
+          },
+          "problemLinkedPlanet": {
+            "type": "string"
+          },
+          "remedyType": {
+            "enum": [
+              "MALA_JAPA",
+              "DAAN",
+              "GEMSTONE",
+              "YANTRA",
+              "PUJA",
+              "MANTRA",
+              "FASTING",
+              "OTHER"
+            ],
+            "type": "string"
+          },
+          "remedyTitle": {
+            "type": "string"
+          },
+          "remedyTitleHi": {
+            "type": "string"
+          },
+          "remedyProductId": {
+            "type": "string",
+            "description": "Optional link to an existing catalog product (remedy_products)."
+          },
+          "targetPlanet": {
+            "type": "string",
+            "description": "The graha the remedy acts on — drives the effect calculation."
+          },
+          "nature": {
+            "enum": [
+              "STRENGTHEN",
+              "PACIFY"
+            ],
+            "type": "string"
+          },
+          "recommendedAt": {
+            "format": "date-time",
+            "type": "string"
+          },
+          "durationDays": {
+            "type": "number"
+          },
+          "status": {
+            "enum": [
+              "ACTIVE",
+              "COMPLETED",
+              "STOPPED"
+            ],
+            "type": "string"
+          },
+          "notes": {
+            "type": "string"
+          },
+          "projectionSnapshot": {
+            "type": "object"
+          },
+          "contextSnapshot": {
+            "type": "object"
+          },
+          "observations": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/RemedyObservation"
+            }
+          },
+          "createdAt": {
+            "format": "date-time",
+            "type": "string"
+          },
+          "updatedAt": {
+            "format": "date-time",
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "userId",
+          "user",
+          "researchNoteId",
+          "researchNote",
+          "problemCategory",
+          "problemTitle",
+          "problemTitleHi",
+          "problemLinkedDosha",
+          "problemLinkedHouse",
+          "problemLinkedPlanet",
+          "remedyType",
+          "remedyTitle",
+          "remedyTitleHi",
+          "remedyProductId",
+          "targetPlanet",
+          "nature",
+          "recommendedAt",
+          "durationDays",
+          "status",
+          "notes",
+          "projectionSnapshot",
+          "contextSnapshot",
+          "observations",
+          "createdAt",
+          "updatedAt"
+        ]
+      },
+      "RemedyObservation": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "assignmentId": {
+            "type": "string"
+          },
+          "assignment": {
+            "$ref": "#/components/schemas/RemedyAssignment"
+          },
+          "userId": {
+            "type": "string"
+          },
+          "observedAt": {
+            "format": "date-time",
+            "type": "string"
+          },
+          "observedBenefitPct": {
+            "type": "number",
+            "description": "-100..+100 — observed benefit; negative means harm (nuksaan)."
+          },
+          "symptomStatus": {
+            "enum": [
+              "IMPROVED",
+              "SAME",
+              "WORSENED"
+            ],
+            "type": "string"
+          },
+          "note": {
+            "type": "string"
+          },
+          "noteHi": {
+            "type": "string"
+          },
+          "createdAt": {
+            "format": "date-time",
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "assignmentId",
+          "assignment",
+          "userId",
+          "observedAt",
+          "observedBenefitPct",
+          "symptomStatus",
+          "note",
+          "noteHi",
+          "createdAt"
+        ]
+      },
+      "UpdateAssignmentDto": {
+        "type": "object",
+        "properties": {
+          "problemCategory": {
+            "type": "string",
+            "enum": [
+              "health",
+              "wealth",
+              "career",
+              "marriage",
+              "mental",
+              "legal",
+              "general"
+            ]
+          },
+          "problemTitle": {
+            "type": "string"
+          },
+          "problemTitleHi": {
+            "type": "string"
+          },
+          "problemLinkedDosha": {
+            "type": "string"
+          },
+          "problemLinkedHouse": {
+            "type": "number"
+          },
+          "problemLinkedPlanet": {
+            "type": "string"
+          },
+          "remedyType": {
+            "type": "string",
+            "enum": [
+              "MALA_JAPA",
+              "DAAN",
+              "GEMSTONE",
+              "YANTRA",
+              "PUJA",
+              "MANTRA",
+              "FASTING",
+              "OTHER"
+            ]
+          },
+          "remedyTitle": {
+            "type": "string"
+          },
+          "remedyTitleHi": {
+            "type": "string"
+          },
+          "remedyProductId": {
+            "type": "string"
+          },
+          "targetPlanet": {
+            "type": "string"
+          },
+          "nature": {
+            "type": "string",
+            "enum": [
+              "STRENGTHEN",
+              "PACIFY"
+            ]
+          },
+          "recommendedAt": {
+            "type": "string"
+          },
+          "durationDays": {
+            "type": "number",
+            "minimum": 1
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "ACTIVE",
+              "COMPLETED",
+              "STOPPED"
+            ]
+          },
+          "notes": {
+            "type": "string"
+          }
+        }
+      },
+      "CreateObservationDto": {
+        "type": "object",
+        "properties": {
+          "observedAt": {
+            "type": "string"
+          },
+          "observedBenefitPct": {
+            "type": "number",
+            "minimum": -100,
+            "maximum": 100
+          },
+          "symptomStatus": {
+            "type": "string",
+            "enum": [
+              "IMPROVED",
+              "SAME",
+              "WORSENED"
+            ]
+          },
+          "note": {
+            "type": "string"
+          },
+          "noteHi": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "observedAt",
+          "observedBenefitPct"
         ]
       },
       "UpsertConsultationReportDto": {
