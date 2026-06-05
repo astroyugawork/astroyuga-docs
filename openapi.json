@@ -9941,10 +9941,7 @@
           "orderId": {
             "type": "string"
           }
-        },
-        "required": [
-          "astrologerId"
-        ]
+        }
       },
       "SendMessageDto": {
         "type": "object",
