@@ -111,6 +111,55 @@
         "description": "\n\n🔒 **Access:** Public — no authentication required."
       }
     },
+    "/api/v1/auth/social-login": {
+      "post": {
+        "operationId": "AuthController_socialLogin",
+        "summary": "Social login (Google now, Apple in future)",
+        "description": "Generic social login — POST /auth/social-login\nCurrently supports: { provider: 'google', token: '<Google ID token>' }\nFuture Apple login: { provider: 'apple', token: '<Apple identity token>' }\n\n🔒 **Access:** Public — no authentication required.",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "provider",
+                  "token"
+                ],
+                "properties": {
+                  "provider": {
+                    "type": "string",
+                    "enum": [
+                      "google",
+                      "apple"
+                    ],
+                    "example": "google"
+                  },
+                  "token": {
+                    "type": "string",
+                    "description": "ID token from the social provider"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "auth"
+        ],
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      }
+    },
     "/api/v1/auth/test-sms": {
       "post": {
         "operationId": "AuthController_testSms",
@@ -11488,6 +11537,20 @@
           "isPhoneVerified": {
             "type": "boolean"
           },
+          "provider": {
+            "type": "string",
+            "nullable": true,
+            "description": "Social login provider: 'google' | 'apple' | null (OTP / email users).\nKeeping a single generic field lets Apple be added later without schema\nchanges — just populate with 'apple'."
+          },
+          "providerId": {
+            "type": "string",
+            "nullable": true,
+            "description": "The unique ID returned by the social provider (Google `sub`, Apple `sub`).\nIndexed so we can look users up quickly on subsequent social logins."
+          },
+          "isVerified": {
+            "type": "boolean",
+            "description": "True when the user's identity has been verified by a trusted third party\n(Google, Apple) or via phone OTP. Used to skip extra verification steps."
+          },
           "isEmailVerified": {
             "type": "boolean"
           },
@@ -11537,6 +11600,9 @@
           "pincode",
           "password",
           "isPhoneVerified",
+          "provider",
+          "providerId",
+          "isVerified",
           "isEmailVerified",
           "hasUsedFreeChat",
           "lastLoginAt",
