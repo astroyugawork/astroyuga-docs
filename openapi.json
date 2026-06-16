@@ -2590,6 +2590,14 @@
             "schema": {
               "type": "string"
             }
+          },
+          {
+            "name": "allStatuses",
+            "required": true,
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "responses": {
