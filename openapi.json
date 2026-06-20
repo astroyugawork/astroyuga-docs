@@ -91,6 +91,27 @@
         "description": "\n\n🔒 **Access:** Public — no authentication required."
       }
     },
+    "/api/v1/auth/verify-phone": {
+      "post": {
+        "operationId": "AuthController_verifyPhone",
+        "summary": "",
+        "description": "Attach + verify a phone number for the logged-in user (e.g. Google signups\nwho have a `g_…` placeholder). Same OTP as login — request via /send-otp.\n\n🔒 **Access:** Requires authentication — any signed-in user.",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "auth"
+        ],
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      }
+    },
     "/api/v1/auth/refresh": {
       "post": {
         "operationId": "AuthController_refresh",
