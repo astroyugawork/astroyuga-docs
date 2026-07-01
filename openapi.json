@@ -745,6 +745,27 @@
         "description": "\n\n🔒 **Access:** Public — no authentication required."
       }
     },
+    "/api/v1/astrologers/public-stats": {
+      "get": {
+        "operationId": "AstrologerController_getPublicStats",
+        "summary": "Get public statistics for landing page",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Returns verified astrologers count, total orders, and total users"
+          }
+        },
+        "tags": [
+          "astrologers"
+        ],
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "description": "\n\n🔒 **Access:** Public — no authentication required."
+      }
+    },
     "/api/v1/astrologers/stats": {
       "get": {
         "operationId": "AstrologerController_getStats",
